@@ -1,5 +1,5 @@
-const CACHE='lumis-shell-v2';
-const SHELL=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
+const CACHE='lumis-shell-v3';
+const SHELL=['./','./index.html','./manifest.webmanifest','./icon-192-round.png','./icon-512-round.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL))));
 self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));
 self.addEventListener('fetch',e=>{
