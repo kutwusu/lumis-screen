@@ -96,12 +96,21 @@ if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
         btn.textContent=on?'✓ 保有中':'＋ 買った';
         btn.classList.toggle('on',on);
         tag.textContent=on?'この端末に保存':'';
-        // Presentation-only SELL conversion. Engine still publishes market weakness.
+        // Position-aware presentation.
+        // Keep the engine's raw market signal in data-lumis-raw so toggling is reversible.
         const texts=[...node.querySelectorAll('*')].filter(x=>x.children.length===0);
         for(const el of texts){
-          const raw=(el.textContent||'').trim();
-          if(on && (raw==='下落注意！'||raw==='売れ！')) el.textContent='売れ！';
-          if(!on && raw==='売れ！') el.textContent='下落注意！';
+          const now=(el.textContent||'').trim();
+          const labels=['買え！','まだ待て！','そのまま！','下落注意！','売れ！'];
+          if(!el.dataset.lumisRaw && labels.includes(now)) el.dataset.lumisRaw=now;
+          const raw=el.dataset.lumisRaw;
+          if(!raw) continue;
+          if(on){
+            // A held position is no longer an entry decision.
+            el.textContent=(raw==='売れ！'||raw==='下落注意！') ? '売れ！' : 'そのまま！';
+          }else{
+            el.textContent=(raw==='売れ！') ? '下落注意！' : raw;
+          }
         }
       };
       btn.onclick=()=>{
