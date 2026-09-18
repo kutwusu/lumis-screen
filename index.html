@@ -1,66 +1,32 @@
-<!doctype html>
-<html lang="ja"><head>
+<!doctype html><html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f4ecff">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icon-192.png">
-<title>ルミス式</title>
+<meta name="theme-color" content="#f4ecff"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png"><title>ルミス式 LIVE</title>
 <style>
-:root{font-family:system-ui,-apple-system,sans-serif;color:#241f2c;background:#fff8f5}
-*{box-sizing:border-box}
-body{margin:0;padding:8px;max-width:760px;margin:auto}
-.hero{background:linear-gradient(135deg,#fff,#f4ecff);border:1px solid #eadff0;border-radius:15px;overflow:hidden;box-shadow:0 5px 18px #77558812}
-.logo{display:block;width:100%;height:112px;object-fit:cover;object-position:center 36%}
-.sub{color:#716879;font-size:10px;padding:5px 12px 7px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:7px}
-.card{background:#fff;border:1px solid #eadfdc;border-radius:12px;padding:8px;min-width:0;cursor:pointer}
-.top{display:flex;justify-content:space-between;align-items:flex-start;gap:4px}
-.name{font-weight:800;font-size:12px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ticker{font-size:9px;color:#7a7280;margin-top:2px}
-.sig{font-weight:900;font-size:15px;line-height:1.1;text-align:right;flex-shrink:0}
-.buy{color:#086b39}.sell{color:#a51d2d}.wait{color:#8a6800}.hold{color:#20539a}
-.reason{margin-top:5px;font-size:10px;line-height:1.25;color:#514a57;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.meta{font-size:9px;color:#8a818f;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.details{display:none;border-top:1px solid #eee4e2;margin-top:6px;padding-top:6px;font-size:9px;color:#716879;line-height:1.35}
-.card.open .details{display:block}
-.card.open .reason{-webkit-line-clamp:unset}
-.foot{margin:8px 2px 2px;color:#928997;font-size:8px;text-align:center}
-.err{grid-column:1/-1;background:#fff1f1;border:1px solid #efcaca;border-radius:12px;padding:10px;font-size:11px}
-@media(max-width:350px){body{padding:5px}.grid{gap:4px}.card{padding:6px}.name{font-size:11px}.sig{font-size:13px}}
+:root{font-family:system-ui,-apple-system,sans-serif;color:#241f2c;background:#fff8f5}*{box-sizing:border-box}body{margin:0;padding:8px;max-width:760px;margin:auto}.hero{background:linear-gradient(135deg,#fff,#f4ecff);border:1px solid #eadff0;border-radius:15px;overflow:hidden;box-shadow:0 5px 18px #77558812}.logo{display:block;width:100%;height:112px;object-fit:cover;object-position:center 36%}.sub{color:#716879;font-size:10px;padding:5px 12px 7px}.bar{display:flex;gap:6px;margin-top:7px}.btn{width:100%;border:0;border-radius:12px;padding:11px 8px;font-weight:900;background:#6f4d8d;color:#fff;font-size:13px}.btn:disabled{opacity:.55}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:7px}.card{background:#fff;border:1px solid #eadfdc;border-radius:12px;padding:8px;min-width:0;cursor:pointer}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:4px}.name{font-weight:800;font-size:12px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ticker{font-size:9px;color:#7a7280;margin-top:2px}.sig{font-weight:900;font-size:15px;line-height:1.1;text-align:right;flex-shrink:0}.buy{color:#086b39}.sell{color:#a51d2d}.wait{color:#8a6800}.hold{color:#20539a}.skip{color:#8c3b76}.reason{margin-top:5px;font-size:10px;line-height:1.25;color:#514a57;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.meta{font-size:9px;color:#8a818f;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.details{display:none;border-top:1px solid #eee4e2;margin-top:6px;padding-top:6px;font-size:9px;color:#716879;line-height:1.35}.card.open .details{display:block}.card.open .reason{-webkit-line-clamp:unset}.foot{margin:8px 2px 2px;color:#928997;font-size:8px;text-align:center}.err{grid-column:1/-1;background:#fff1f1;border:1px solid #efcaca;border-radius:12px;padding:10px;font-size:11px}@media(max-width:350px){body{padding:5px}.grid{gap:4px}.card{padding:6px}.name{font-size:11px}.sig{font-size:13px}}
 </style></head><body>
-<div class="hero">
-  <img class="logo" src="lumis-logo.png" alt="ルミス式 LUMIS INVESTMENT">
-  <div id="status" class="sub">デッキを確認しています…</div>
-</div>
-<div id="grid" class="grid"></div>
-<div class="foot">研究用・自動発注なし｜カードをタップで詳細表示</div>
+<div class="hero"><img class="logo" src="lumis-logo.png" alt="ルミス式"><div id="status" class="sub">開いた時点の価格で判定します</div></div>
+<div class="bar"><button id="refresh" class="btn">今の20銘柄を判定</button></div><div id="grid" class="grid"></div>
+<div class="foot">ルミス式 LIVE｜手動更新・自動発注なし｜データ取得失敗時は売買判断しない</div>
 <script>
-const cls=s=>s.includes('買')?'buy':s.includes('売')||s.includes('利確')?'sell':(s.includes('持')||s.includes('そのまま'))?'hold':'wait';
-const priority=s=>s.includes('買')?0:(s.includes('売')||s.includes('利確'))?1:(s.includes('持')||s.includes('そのまま'))?2:3;
+const DECK=[
+['フジクラ','5803.T','JP','光通信・AIインフラ'],['アドバンテスト','6857.T','JP','AI半導体テスト'],['三菱重工','7011.T','JP','防衛・エネルギー・インフラ'],['DISCO','6146.T','JP','半導体製造装置'],['日立製作所','6501.T','JP','DX・電力・鉄道・インフラ'],['キーエンス','6861.T','JP','FA・センサー・自動化'],['安川電機','6506.T','JP','ロボット・FA'],['Broadcom','AVGO','US','AI ASIC・ネットワーク'],['Arista Networks','ANET','US','AIネットワーク'],['Vertiv','VRT','US','データセンター電力・冷却'],['Palo Alto Networks','PANW','US','サイバーセキュリティ'],['Eli Lilly','LLY','US','肥満治療・医薬品'],['Costco','COST','US','消費・会員制小売'],['Rocket Lab','RKLB','US','宇宙・ロケット・衛星'],['Cameco','CCJ','US','原子力・ウラン'],['Hims & Hers','HIMS','US','デジタル医療'],['Nu Holdings','NU','US','中南米フィンテック'],['Duolingo','DUOL','US','教育・アプリ'],['SoFi Technologies','SOFI','US','フィンテック・金融'],['Cloudflare','NET','US','クラウド・ネットワーク']];
+const cls=s=>s.includes('買')?'buy':s.includes('売')||s.includes('利確')?'sell':s.includes('見送')?'skip':s.includes('そのまま')?'hold':'wait';
+const priority=s=>s.includes('買')?0:(s.includes('売')||s.includes('利確'))?1:s.includes('見送')?2:s.includes('そのまま')?3:4;
 const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-async function load(){
-  try{
-    const r=await fetch('data/deck.json?t='+Date.now(),{cache:'no-store'});
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    const d=await r.json();
-    document.getElementById('status').textContent=`${d.deck_size}社監視｜更新 ${new Date(d.generated_at).toLocaleString('ja-JP')}`;
-    const rows=[...d.results].sort((a,b)=>priority(a.signal)-priority(b.signal));
-    document.getElementById('grid').innerHTML=rows.map((x,i)=>`
-      <div class="card" data-i="${i}">
-        <div class="top">
-          <div style="min-width:0"><div class="name">${esc(x.name)}</div><div class="ticker">${esc(x.ticker)}</div></div>
-          <div class="sig ${cls(x.signal)}">${esc(x.signal)}</div>
-        </div>
-        <div class="reason">${esc(x.reason||'')}</div>
-        <div class="meta">高値比 ${esc(x.drawdown63_pct??'-')}%｜RSI ${esc(x.rsi14??'-')}</div>
-        <div class="details">${esc(x.theme||'')}｜${esc(x.mode||'')}<br>${esc(x.date||'')}　終値 ${esc(x.close??'-')}</div>
-      </div>`).join('');
-    document.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('open')));
-  }catch(e){
-    document.getElementById('status').textContent='データを読み込めませんでした';
-    document.getElementById('grid').innerHTML=`<div class="err">deck.json がまだ公開されていないか、更新中です。</div>`;
-  }
-}
-load();
-if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function ema(a,n){let k=2/(n+1),o=[],v=null;for(let x of a){v=v==null?x:x*k+v*(1-k);o.push(v)}return o}
+function sma(a,n){return a.map((_,i)=>i<n-1?null:a.slice(i-n+1,i+1).reduce((s,x)=>s+x,0)/n)}
+function rsi(a,n=14){let out=Array(a.length).fill(null),up=0,dn=0;for(let i=1;i<a.length;i++){let d=a[i]-a[i-1],u=Math.max(d,0),v=Math.max(-d,0);if(i===1){up=u;dn=v}else{up=(up*(n-1)+u)/n;dn=(dn*(n-1)+v)/n}if(i>=n)out[i]=dn===0?100:100-100/(1+up/dn)}return out}
+function rankPct(arr,i,w){if(i<w-1||arr[i]==null)return null;let s=arr.slice(i-w+1,i+1).filter(Number.isFinite),v=arr[i];return s.length?s.filter(x=>x<=v).length/s.length:null}
+function calc(item,j){const q=j.indicators.quote[0],ts=j.timestamp||[], rows=ts.map((t,i)=>({t,o:q.open[i],h:q.high[i],l:q.low[i],c:q.close[i],v:q.volume[i]})).filter(x=>[x.o,x.h,x.l,x.c].every(Number.isFinite));if(rows.length<220)throw Error('履歴不足');
+ const c=rows.map(x=>x.c), e=ema(c,10), s50=sma(c,50), s200=sma(c,200), rr=rsi(c,14);let dd=[],ret20=[];for(let i=0;i<c.length;i++){let h=i>=62?Math.max(...c.slice(i-62,i+1)):null;dd[i]=h?c[i]/h-1:null;ret20[i]=i>=20?c[i]/c[i-20]-1:null}
+ let i=c.length-1, prev=i-1, slope=i>=20&&s200[i]&&s200[i-20]?s200[i]/s200[i-20]-1:null, trend=(c[i]>=s200[i]||slope>=0), dr=rankPct(dd,i,Math.min(756,i+1)), pull=dd[i]<=-.08&&dr!=null&&dr<=.20, cross=c[i]>=e[i]&&c[prev]<e[prev], rising=rr[i]>rr[prev], reversal=cross&&rising&&trend;
+ let dayGain=rows[i].o?c[i]/rows[i].o-1:0, gapGain=rows[prev].c?rows[i].o/rows[prev].c-1:0, chase=Math.max(dayGain,gapGain)>0.04;
+ let sig='まだ待て！',reason=pull?'安くなったが反転確認前':'買い条件待ち';if(pull&&reversal){if(chase){sig='見送れ！';reason='反転したが今日は上がり過ぎ'}else{sig='買え！';reason='押し目から反転・現在値で確認'}}
+ return {name:item[0],ticker:item[1],market:item[2],theme:item[3],signal:sig,reason,close:c[i],drawdown63_pct:dd[i]*100,rsi14:rr[i],day_gain_pct:dayGain*100,asof:new Date(rows[i].t*1000).toLocaleString('ja-JP')};}
+async function yahoo(symbol){const base=`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=5y&interval=1d&includePrePost=true&events=div%2Csplits`;
+ const urls=[base,`https://api.allorigins.win/raw?url=${encodeURIComponent(base)}`,`https://corsproxy.io/?url=${encodeURIComponent(base)}`];let last;for(const u of urls){try{const r=await fetch(u,{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);const d=await r.json();const x=d?.chart?.result?.[0];if(x)return x;throw Error('空データ')}catch(e){last=e}}throw last||Error('取得失敗')}
+function render(rows){rows.sort((a,b)=>priority(a.signal)-priority(b.signal));document.getElementById('grid').innerHTML=rows.map(x=>`<div class="card"><div class="top"><div style="min-width:0"><div class="name">${esc(x.name)}</div><div class="ticker">${esc(x.ticker)}</div></div><div class="sig ${cls(x.signal)}">${esc(x.signal)}</div></div><div class="reason">${esc(x.reason)}</div><div class="meta">高値比 ${Number(x.drawdown63_pct).toFixed(2)}%｜RSI ${Number(x.rsi14).toFixed(1)}｜今日 ${Number(x.day_gain_pct).toFixed(2)}%</div><div class="details">${esc(x.theme)}<br>${esc(x.asof)}　価格 ${Number(x.close).toLocaleString(undefined,{maximumFractionDigits:4})}</div></div>`).join('');document.querySelectorAll('.card').forEach(c=>c.onclick=()=>c.classList.toggle('open'))}
+async function load(){const b=document.getElementById('refresh'),st=document.getElementById('status');b.disabled=true;let ok=[],fail=[];document.getElementById('grid').innerHTML='';for(let n=0;n<DECK.length;n++){st.textContent=`最新データ取得中 ${n+1}/20…`;try{ok.push(calc(DECK[n],await yahoo(DECK[n][1])))}catch(e){fail.push(DECK[n][0])}render(ok);await sleep(80)}const now=new Date().toLocaleString('ja-JP');st.textContent=fail.length?`更新 ${now}｜${ok.length}/20成功・${fail.length}件取得失敗`:`更新 ${now}｜20社を現在データで再判定`;if(fail.length)document.getElementById('grid').insertAdjacentHTML('beforeend',`<div class="err">取得できなかった銘柄：${esc(fail.join('、'))}<br>この銘柄は判定していません。</div>`);b.disabled=false}
+document.getElementById('refresh').onclick=load;load();if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js');
 </script></body></html>
