@@ -1,6 +1,6 @@
 {
   "version": "lumis-live-5m-v6",
-  "generated_at": "2026-09-21T22:40:46.370148+00:00",
+  "generated_at": "2026-09-21T22:51:48.510164+00:00",
   "research_only": true,
   "real_money_status": "5分足 LIVE / 60/60取得",
   "deck_size": 60,
@@ -950,7 +950,7 @@
       "previous_close": 303.25,
       "session_change_pct": 12.28,
       "open_change_pct": 10.19,
-      "bounce_from_low_pct": 10.26,
+      "bounce_from_low_pct": 10.41,
       "return3_pct": 26.49,
       "return5_pct": 32.46,
       "drawdown63_pct": -29.46,
