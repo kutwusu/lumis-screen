@@ -1,6 +1,6 @@
 {
   "version": "lumis-live-5m-v6",
-  "generated_at": "2026-09-28T23:27:21.724300+00:00",
+  "generated_at": "2026-09-28T23:42:08.072820+00:00",
   "research_only": true,
   "real_money_status": "5分足 LIVE / 60/60取得",
   "deck_size": 60,
@@ -403,7 +403,7 @@
       "reversal": false,
       "overheat": true,
       "sma50": 13835.2796,
-      "sma200": 11480.4569,
+      "sma200": 11480.457,
       "thesis": "ACTIVE",
       "held_core": false,
       "held_swing": false
